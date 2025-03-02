@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home.jsx';
 import NotFound from '../pages/404NotFound';
-import SinglePlayer from '../pages/singlePlayer';
+import SinglePlayer from '../pages/SinglePlayer';
 
 const GameRoutes = () => {
   return (
