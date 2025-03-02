@@ -74,7 +74,7 @@ const CorrectAnswerModal = ({ selectedCorrectAnswer, handleClose, open }) => {
         recycle={false}
         run={true}
       />
-      {console.log('selectedCorrectAnswer', selectedCorrectAnswer)};
+      {console.log('selectedCorrectAnswer', selectedCorrectAnswer)}
       <StyledTitle>Fun Fact</StyledTitle>
       <StyledCardContent>
         <StyledClueBox>
