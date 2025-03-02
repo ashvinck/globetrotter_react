@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSliceReducer from '../features/auth/authSlice';
-import gameScoreReducer from '../features/gameData/gameDataSlice';
+import gameScoreReducer from '../features/GameData/gameDataSlice';
 import socketSliceReducer from '../features/mutliplayer/socketSlice';
 import { api } from './api/api';
 
