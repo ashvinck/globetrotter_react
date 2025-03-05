@@ -251,7 +251,6 @@ const SinglePlayer = () => {
         </GameContainer>
       ) : (
         <GameContainer>
-          // Box with clues and options
           <StyledBox>
             <ToastContainer autoClose={800} theme='dark' />
             <StyledCard>
