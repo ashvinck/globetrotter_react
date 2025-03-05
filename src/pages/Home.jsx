@@ -120,13 +120,7 @@ const Home = () => {
         </Grid>
         <Grid size={{ xs: 12, md: 6, lg: 6, xl: 6 }}>
           <ImageBox>
-            <img
-              src={BgImage}
-              alt='bg'
-              className='bg-img'
-              width='400'
-              height='400'
-            />
+            <img src={BgImage} alt='bg' className='bg-img' />
           </ImageBox>
           <Box sx={{ textAlign: 'center' }}>
             <Hidden mdUp>

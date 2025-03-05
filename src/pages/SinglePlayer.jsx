@@ -34,11 +34,11 @@ const StyledCard = styled(Card)(({ theme }) => ({
   paddingTop: theme.spacing(5),
   paddingLeft: theme.spacing(3),
   paddingRight: theme.spacing(3),
-  height: '80%',
   backgroundColor: theme.palette.primary.light,
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
+  flex: 1,
 }));
 
 const StyledTitle = styled(Typography)(({ theme }) => ({
@@ -79,6 +79,8 @@ const StyledLinkBox = React.memo(
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    height: '100vh',
+    width: '100vw',
   }))
 );
 
@@ -223,48 +225,67 @@ const SinglePlayer = () => {
   console.log('data', data);
 
   return (
-    <GameContainer>
+    <>
       {/* Loading Icon  */}
       {isLoading ? (
-        <StyledLinkBox>
-          <Typography sx={{ p: 2 }}>Please wait....</Typography>
-          <CircularProgress color='secondary' />
-        </StyledLinkBox>
+        <GameContainer>
+          <StyledLinkBox>
+            <Typography sx={{ p: 2 }}>Please wait....</Typography>
+            <CircularProgress color='secondary' />
+          </StyledLinkBox>
+        </GameContainer>
+      ) : isError ? (
+        <GameContainer>
+          <StyledLinkBox>
+            <Typography sx={{ p: 2, color: 'red', fontWeight: 'bold' }}>
+              ❌ Server Error. Please wait a minute and try again.
+            </Typography>
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={refetch} // Try fetching the data again
+            >
+              Retry
+            </Button>
+          </StyledLinkBox>
+        </GameContainer>
       ) : (
-        // Box with clues and options
-        <StyledBox>
-          <ToastContainer autoClose={800} theme='dark' />
-          <StyledCard>
-            <StyledScoreBox>
-              <StyledScoreButton>
-                Score: {correctAnswers}/{totalQuestions}
-              </StyledScoreButton>
-            </StyledScoreBox>
-            <StyledTitle>Guess the city based on the clue below</StyledTitle>
-            <StyledCardContent>
-              <StyledClueBox>
-                {clues.map((item) => (
-                  <StyledClues key={item}>{item}</StyledClues>
-                ))}
-              </StyledClueBox>
-              <StyledOptionsBox>
-                <Stack spacing={2} direction='column' width='300px'>
-                  {options?.map((item) => (
-                    <StyledOptionsButton
-                      variant='outlined'
-                      key={item}
-                      onClick={() => handleOptionClick(item, id)}
-                      disabled={isChecking}
-                    >
-                      {item}
-                    </StyledOptionsButton>
+        <GameContainer>
+          // Box with clues and options
+          <StyledBox>
+            <ToastContainer autoClose={800} theme='dark' />
+            <StyledCard>
+              <StyledScoreBox>
+                <StyledScoreButton>
+                  Score: {correctAnswers}/{totalQuestions}
+                </StyledScoreButton>
+              </StyledScoreBox>
+              <StyledTitle>Guess the city based on the clue below</StyledTitle>
+              <StyledCardContent>
+                <StyledClueBox>
+                  {clues.map((item) => (
+                    <StyledClues key={item}>{item}</StyledClues>
                   ))}
-                </Stack>
-              </StyledOptionsBox>
-              {/* <StyledButton>Next Question</StyledButton> */}
-            </StyledCardContent>
-          </StyledCard>
-        </StyledBox>
+                </StyledClueBox>
+                <StyledOptionsBox>
+                  <Stack spacing={2} direction='column' width='300px'>
+                    {options?.map((item) => (
+                      <StyledOptionsButton
+                        variant='outlined'
+                        key={item}
+                        onClick={() => handleOptionClick(item, id)}
+                        disabled={isChecking}
+                      >
+                        {item}
+                      </StyledOptionsButton>
+                    ))}
+                  </Stack>
+                </StyledOptionsBox>
+                {/* <StyledButton>Next Question</StyledButton> */}
+              </StyledCardContent>
+            </StyledCard>
+          </StyledBox>
+        </GameContainer>
       )}
       {selectedCorrectAnswer && (
         <Confetti
@@ -284,7 +305,7 @@ const SinglePlayer = () => {
         open={incorrectOpen}
         handleClose={handleIncorrectClose}
       />
-    </GameContainer>
+    </>
   );
 };
 

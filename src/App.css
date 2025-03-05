@@ -6,3 +6,11 @@ a {
 a:hover {
   color: #c8b5a7;
 }
+
+.bg-img {
+  width: 75%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 5px;
+  opacity: 1;
+}
